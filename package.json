@@ -1,0 +1,20 @@
+{
+  "name": "Recordo",
+  "version": "0.0.1",
+  "description": "Audio recorder using Phonegap and Backbone.js",
+  "main": "Cordova-2.3.0.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ajhino/bonegap-audio-recorder.git"
+  },
+  "keywords": [
+    "audio",
+    "phonegap",
+    "backbone.js"
+  ],
+  "author": "Aaron Hinojosa",
+  "license": "BSD"
+}
