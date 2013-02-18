@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/ajhino/bonegap-audio-recorder.git"
+    "url": "git://github.com/ajhino/bonegap-recorder.git"
   },
   "keywords": [
     "audio",
