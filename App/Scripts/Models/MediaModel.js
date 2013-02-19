@@ -41,6 +41,12 @@
 
         onError: function() {
             window.console.log("MEDIA MODEL ERROR");
+        },
+
+        // @REVIEW: consider using this convenience method in view and handling media API methods in view
+        // instead of here or place in media mixin and extend with media view
+        getRecording: function() {
+            return this.get('recording') || false;
         }
 
     });
