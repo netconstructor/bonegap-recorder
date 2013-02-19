@@ -13,7 +13,43 @@ var App = {
     App.models.MediaModel = Backbone.Model.extend({
 
         defaults: {
-            src: ''
+            src: '',
+            recording: ''
+        },
+
+        setRecordingSrc: function() {
+            var src = this.get('src');
+
+            // set up media properties and get new file to record to
+            this.set('recording', new Media(this.get('src'), this.onSuccess, this.onError));
+
+        },
+
+        startRecording: function() {
+            window.console.log("start recording");
+
+            // start recording
+            this.get('recording').startRecord();
+        },
+
+        stopRecording: function() {
+            this.get('recording').stopRecord();
+        },
+
+        play: function() {
+            this.get('recording').play();
+        },
+
+        stop: function() {
+            this.get('recording').stop();
+        },
+
+        onSuccess: function() {
+            window.console.log("MEDIA MODEL SUCCESS");
+        },
+
+        onError: function() {
+            window.console.log("MEDIA MODEL ERROR");
         }
 
     });
@@ -108,41 +144,50 @@ var App = {
 
         startRecording: function() {
             window.console.log("start recording");
-            var src = this.model.get('src');
+            // var src = this.model.get('src');
             // set up media properties and get new file to record to
-            this.mediaRec = new Media(src, this.onSuccess, this.onError);            
+            // this.mediaRec = new Media(src, this.onSuccess, this.onError);
 
-            // start recording
-            this.mediaRec.startRecord();
+            this.model.setRecordingSrc();
+            this.model.startRecording();
+
+            // // @TODO: create method on model to handle this
+            // this.model.set('recording', new Media(src, this.onSuccess, this.onError));     
+
+            // // start recording
+            // this.mediaRec.startRecord();
         },
 
         stopRecording: function() {
             window.console.log("stop recording");
-            this.mediaRec.stopRecord();
+            // this.mediaRec.stopRecord();
+            this.model.stopRecording();
         },
 
         play: function() {
-            this.my_media = new Media(this.model.get('src'),
+            // this.my_media = new Media(this.model.get('src'),
 
-                // success callback
-                function() {
-                    window.console.log("play(): Audio Success");
-                },
+            //     // success callback
+            //     function() {
+            //         window.console.log("play(): Audio Success");
+            //     },
 
-                // error callback
-                function(err) {
-                    window.console.log("play: Audio Error: " +err);
-            });
+            //     // error callback
+            //     function(err) {
+            //         window.console.log("play: Audio Error: " +err);
+            // });
 
-            // play media
-            this.my_media.play();
+            // // play media
+            // this.my_media.play();
+            this.model.play();
 
         },
 
         stop: function() {
-            if (this.my_media) {
-                this.my_media.stop();
-            }
+            // if (this.my_media) {
+            //     this.my_media.stop();
+            // }
+            this.model.stop();
         },
 
         onDirectory: function(d) {

@@ -49,42 +49,21 @@
         },
 
         startRecording: function() {
-            window.console.log("start recording");
-            var src = this.model.get('src');
-            // set up media properties and get new file to record to
-            this.mediaRec = new Media(src, this.onSuccess, this.onError);            
-
-            // start recording
-            this.mediaRec.startRecord();
+            this.model.setRecordingSrc();
+            this.model.startRecording();
         },
 
         stopRecording: function() {
-            window.console.log("stop recording");
-            this.mediaRec.stopRecord();
+            this.model.stopRecording();
         },
 
         play: function() {
-            this.my_media = new Media(this.model.get('src'),
-
-                // success callback
-                function() {
-                    window.console.log("play(): Audio Success");
-                },
-
-                // error callback
-                function(err) {
-                    window.console.log("play: Audio Error: " +err);
-            });
-
-            // play media
-            this.my_media.play();
-
+            this.model.play();
         },
 
         stop: function() {
-            if (this.my_media) {
-                this.my_media.stop();
-            }
+
+            this.model.stop();
         },
 
         onDirectory: function(d) {
