@@ -49,6 +49,7 @@
         },
 
         startRecording: function() {
+            this.model.setGeoData();
             this.model.setRecordingSrc();
             this.model.startRecording();
         },

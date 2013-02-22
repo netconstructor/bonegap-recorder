@@ -1,11 +1,17 @@
 (function(App, $, Backbone, Jr, _) {
 
-// basic model to hold audio files
+/**
+ * This model will hold all information associated with
+ * a given media element: file src, the recording object itself,
+ * location data including speed, accel, altitude, ...
+ */
     App.models.MediaModel = Backbone.Model.extend({
 
         defaults: {
             src: '',
-            recording: ''
+            recording: '',
+            coords: {},
+            speed: ''
         },
 
         setRecordingSrc: function() {
@@ -14,6 +20,26 @@
             // set up media properties and get new file to record to
             this.set('recording', new Media(this.get('src'), this.onSuccess, this.onError));
 
+        },
+
+        setGeoData: function() {
+            var self = this;
+
+            navigator.geolocation.getCurrentPosition(
+                
+                // success
+                function(position) {
+                    self.set('coords', {latitude: position.coords.latitude, longitude: position.coords.longitude});
+                    self.set('speed', position.coords.speed);
+                    console.log(self.get('coords'));
+                    console.log(self.get('speed'));
+                },
+
+                // error
+                function() {
+                    console.log("Error getting device location");
+                }
+            );
         },
 
         startRecording: function() {

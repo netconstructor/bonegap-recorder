@@ -49,7 +49,8 @@ module.exports = function(grunt) {
       },
       globals: {
         Media: true,
-        LocalFileSystem: true
+        LocalFileSystem: true,
+        console: true
       }
     },
     uglify: {}
